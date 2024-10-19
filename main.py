@@ -22,6 +22,7 @@ screen = Screen("Here is your scrolling message...", "#000000", 10, 1)
 @app.route("/")
 @app.route("/index")
 def index():
+    """Affiche l'écran d'information"""
     return render_template(
         "accueil.html",
         base_url=request.base_url
@@ -30,6 +31,7 @@ def index():
 
 @app.route("/api/json/get-state")
 def get_state():
+    """Retourne les paramètres actuellement utilisés par l'écran"""
     reponse = {
         "status": "OK",
         "message": screen.get_message(),
