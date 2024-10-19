@@ -50,7 +50,7 @@
         console.log("update_screen()...");
 
         // Préparation de l'URL
-        let url = "{{ base_url }}api/get-state";
+        let url = "{{ base_url }}api/json/get-state";
 
         // Envoi de la requête et attente de la réponse
         let response = await fetch(url);
@@ -63,6 +63,9 @@
         let message = document.getElementById("message");
         message.innerHTML = data.message;
         message.style.color = data.color;
+
+        // Relance en continu
+        setTimeout(update_screen, 2000)
       }
 
     </script>
@@ -81,7 +84,7 @@
       <div class="marquee bg-white p-3 border rounded full-width">
         <div id="message" class="marquee-content fs-1">Here your scrolling message...</div>
       </div>
-      
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

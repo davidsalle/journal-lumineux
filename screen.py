@@ -48,7 +48,9 @@ class Screen:
         - uniquement des chiffres et des lettres (minuscules ou majuscules)
         """
         #print( re.search(r"[^ \w+]", new_message) )
-        if len(new_message) > 50:
+        if isinstance(new_message, str) == False:
+            raise ScreenError("Message is not a string")
+        elif len(new_message) > 50:
             raise ScreenError("Message is too long")
         elif re.search(r"[^ \w+]", new_message) is not None:
             raise ScreenError("Message must contains only numbers and letters")
@@ -58,8 +60,13 @@ class Screen:
     def set_color(self, new_color):
         self.color = new_color
 
-    def set_speed(self, new_speed):
-        self.speed = new_speed
+    def set_speed(self, new_speed: int) -> None:
+        if isinstance(new_speed, int) == False:
+            raise ScreenError("Speed is not an integer")
+        elif new_speed < 5 or new_speed > 20:
+            raise ScreenError("Speed must be between 5s and 20s")        
+        else:            
+            self.speed = new_speed
 
     def set_size(self, new_size):
         self.size = new_size

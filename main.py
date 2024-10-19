@@ -27,6 +27,7 @@ def index():
         base_url=request.base_url
     )
 
+
 @app.route("/api/json/get-state")
 def get_state():
     reponse = {
@@ -37,22 +38,28 @@ def get_state():
     }
     return jsonify(reponse)
 
+
 @app.route("/api/json/set-message", methods=["POST", "GET"])
 def set_message_from_api():
     """Gère le changement de message
     
-    curl -X POST http://127.0.0.1:5000/api/set-message \
+    curl -X POST http://127.0.0.1:5000/api/json/set-message \
     -H 'Content-Type: application/json' \
-    -d '{"message":"Hello world les amis"}'
+    -d '{"message":"Hello", "color":"#00ff00", "speed":10}'
     """
     if request.method == "POST":
         # Récupération des données JSON
-        donnees = request.json
-        nouveau_message = donnees.get("message")
+        data = request.json
+        new_message = data.get("message")
+        new_color = data.get("color")
+        new_speed = data.get("speed")
 
-        if nouveau_message is not None:
+        if new_message is not None and new_color is not None and new_speed is not None:
             try:
-                screen.set_message(nouveau_message)
+                # Modification des caractéristiques du message
+                screen.set_message(new_message)
+                screen.set_color(new_color)
+                screen.set_speed(new_speed)
                 reponse = {
                     "status": "OK",
                     "error": "...",
@@ -67,7 +74,7 @@ def set_message_from_api():
         else:
             reponse = {
                 "status": "NOK",
-                "error": "Cannot find message in JSON",
+                "error": "JSON format error, a field is missing",
             }
             return jsonify(reponse)
     else:
