@@ -3,7 +3,7 @@ Simulateur de journal lumineux ou écran d'accueil
 """
 
 # Librairie(s) utilisée(s)
-from flask import Flask, render_template, jsonify
+from flask import Flask, request, render_template, jsonify
 
 
 # Création de l'application
@@ -13,7 +13,10 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/index")
 def index():
-	return render_template("accueil.html")
+	return render_template(
+		"accueil.html",
+		base_url=request.base_url
+	)
 
 @app.route("/api/get-state")
 def get_state():

@@ -50,7 +50,7 @@
         console.log("update_screen()...");
 
         // Préparation de l'URL
-        let url = "http://127.0.0.1:5000/api/get-state";
+        let url = "{{ base_url }}api/get-state";
 
         // Envoi de la requête et attente de la réponse
         let response = await fetch(url);
