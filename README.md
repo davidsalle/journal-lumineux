@@ -6,7 +6,7 @@ Simulateur de journal lumineux ou écran d'information pilotable via API
 
 Récupération du dépôt avec :
 ```shell
-git clone ...
+git clone https://github.com/davidsalle/journal-lumineux.git
 cd journal-lumineux
 ```
 
