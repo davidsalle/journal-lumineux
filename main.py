@@ -7,12 +7,12 @@ Application web
 # Librairie(s) utilisée(s)
 from flask import Flask, request, render_template, jsonify
 from screen import Screen
-
    		
 
 # Création des objets de l'application
 app = Flask(__name__)
 screen = Screen("Here your scrolling message...", "#000000", 10, 1)
+
 
 # Définitions des routes
 @app.route("/")
