@@ -29,23 +29,30 @@ def index():
     )
 
 
-@app.route("/api/json/get-state")
+@app.route("/api/json/get-screen", methods=["POST", "GET"])
 def get_state():
     """Retourne les paramètres actuellement utilisés par l'écran"""
-    reponse = {
-        "status": "OK",
-        "message": screen.get_message(),
-        "color": screen.get_color(),
-        "speed": screen.get_speed()
-    }
-    return jsonify(reponse)
+    if request.method == "GET":
+        reponse = {
+            "status": "OK",
+            "message": screen.get_message(),
+            "color": screen.get_color(),
+            "speed": screen.get_speed()
+        }
+        return jsonify(reponse)
+    else:
+        reponse = {
+            "status": "NOK",
+            "error": "Only GET method is allowed",
+        }
+        return jsonify(reponse)
 
 
-@app.route("/api/json/set-message", methods=["POST", "GET"])
+@app.route("/api/json/set-screen", methods=["POST", "GET"])
 def set_message_from_api():
     """Gère le changement de message
     
-    curl -X POST http://127.0.0.1:5000/api/json/set-message \
+    curl -X POST http://127.0.0.1:5000/api/json/set-screen \
     -H 'Content-Type: application/json' \
     -d '{"message":"Hello", "color":"#00ff00", "speed":10}'
     """
