@@ -28,15 +28,19 @@ class Screen:
         self.size = size
 
     def get_message(self) -> str:
+        """Retourne le message actuel"""
         return self.message
     
     def get_color(self) -> str:
+        """Retourne la couleur actuelle"""
         return self.color
 
     def get_speed(self) -> int:
+        """Retourne la vitesse actuelle"""
         return self.speed    
     
     def get_size(self) -> int:        
+        """Retourne la taille actuelle"""
         return self.size
 
          
@@ -71,6 +75,7 @@ class Screen:
             self.speed = new_speed
 
     def set_size(self, new_size):
+        """Modifie la taille du texte (TODO)"""
         self.size = new_size
 
 
