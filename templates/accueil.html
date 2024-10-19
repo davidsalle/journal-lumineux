@@ -59,11 +59,16 @@
         let data = await response.json();
 
         // Affichage dans la zone dédiée en décodant le JSON
-        let color = document.getElementById("color");
-        let message = document.getElementById("message");
+        let message = document.getElementById("message");        
         message.innerHTML = data.message;
+
+        let color = document.getElementById("color");
         message.style.color = data.color;
 
+        let marqueeContent = document.querySelector('.marquee-content');
+        marqueeContent.style.animationDuration = data.speed + 's';        
+        console.log(data.speed + 's');
+        
         // Relance en continu
         setTimeout(update_screen, 2000)
       }
